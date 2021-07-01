@@ -9,6 +9,8 @@ class User {
 
   password;
 
+  admin;
+
   created_at;
 
   updated_at;
@@ -16,6 +18,7 @@ class User {
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+      this.admin = false;
     }
   }
 }

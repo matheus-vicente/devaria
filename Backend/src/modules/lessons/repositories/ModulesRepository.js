@@ -42,6 +42,17 @@ class ModulesRepository {
 
     return module;
   }
+
+  list() {
+    return this.#modules;
+  }
+
+  update(id, name) {
+    const module = this.#modules.find(module => module.id === id);
+
+    module.name = String(name);
+    module.updated_at = new Date();
+  }
 }
 
 module.exports = { ModulesRepository };

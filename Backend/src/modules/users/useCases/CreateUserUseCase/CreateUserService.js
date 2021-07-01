@@ -1,11 +1,13 @@
 class CreateUserService {
   #usersRepository;
+  #hashProvider;
 
-  constructor(usersRepository) {
+  constructor(usersRepository, hashProvider) {
     this.#usersRepository = usersRepository;
+    this.#hashProvider = hashProvider;
   }
 
-  execute(name, email, password) {
+  async execute(name, email, password) {
     const emailAlreadyExists = this.#usersRepository.findByEmail(email);
 
     if (emailAlreadyExists) {
@@ -16,9 +18,9 @@ class CreateUserService {
       throw new Error('A senha deve conter pelo menos 8 caracteres!');
     }
 
-    const user = this.#usersRepository.create(name, email, password);
+    const hashedPassword = await this.#hashProvider.generateHash(password);
 
-    return user;
+    this.#usersRepository.create(name, email, hashedPassword);
   }
 }
 

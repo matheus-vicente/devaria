@@ -29,14 +29,29 @@ class UsersRepository {
     });
 
     this.#users.push(user);
-
-    return user;
   }
 
   findByEmail(email) {
     const user = this.#users.find(user => user.email === email);
 
     return user;
+  }
+
+  findById(id) {
+    const user = this.#users.find(user => user.id === id);
+
+    return user;
+  }
+
+  turnAdmin(id) {
+    const user = this.#users.find(user => user.id === id);
+
+    user.admin = !user.admin;
+    user.updated_at = new Date();
+  }
+
+  list() {
+    return this.#users;
   }
 }
 
