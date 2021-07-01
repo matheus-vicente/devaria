@@ -38,6 +38,30 @@ class LessonsRepository {
 
     return lession;
   }
+
+  findById(id) {
+    const lession = this.#lessons.find((lession) => lession.id === id);
+
+    return lession;
+  }
+
+  list() {
+    return this.#lessons;
+  }
+
+  update(id, name, lesson_date) {
+    const lesson = this.#lessons.find(lesson => lesson.id === id);
+
+    lesson.name = String(name);
+    lesson.lesson_date = new Date(String(lesson_date));
+    lesson.updated_at = new Date();
+  }
+
+  delete(id) {
+    const lessons = this.#lessons.filter(lesson => lesson.id !== id);
+
+    this.#lessons = lessons;
+  }
 }
 
 module.exports = { LessonsRepository };

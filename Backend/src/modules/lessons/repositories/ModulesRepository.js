@@ -53,6 +53,12 @@ class ModulesRepository {
     module.name = String(name);
     module.updated_at = new Date();
   }
+
+  delete(id) {
+    const modules = this.#modules.filter(module => module.id !== id);
+
+    this.#modules = modules;
+  }
 }
 
 module.exports = { ModulesRepository };
