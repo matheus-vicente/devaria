@@ -11,4 +11,4 @@ app.use('/users', usersRouter);
 app.use('/modules', modulesRouter);
 app.use('/lessons', lessonsRouter);
 
-app.listen(3333, () => console.log('Servidor rodando!'));
+app.listen(process.env.EXPRESS_DEFAULT_PORT, () => console.log('Servidor rodando!'));
