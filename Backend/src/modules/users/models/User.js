@@ -1,26 +1,19 @@
-const { v4: uuidV4 } = require('uuid');
+'use strict';
 
-class User {
-  id;
+const { Model } = require('sequelize');
 
-  name;
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {};
 
-  email;
+  User.init({
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    admin: DataTypes.BOOLEAN,
+  }, {
+    sequelize,
+    modelName: 'User',
+  });
 
-  password;
-
-  admin;
-
-  created_at;
-
-  updated_at;
-
-  constructor() {
-    if (!this.id) {
-      this.id = uuidV4();
-      this.admin = false;
-    }
-  }
-}
-
-module.exports = { User };
+  return User;
+};

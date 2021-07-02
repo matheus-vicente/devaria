@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  database_devaria:
+  db:
     image: postgres
     container_name: database_devaria
     restart: always
@@ -13,6 +13,7 @@ services:
       - POSTGRES_DB=devaria
     volumes:
       - pgdata:/data/postgres
+
   app:
     build: .
     container_name: devaria
@@ -20,10 +21,11 @@ services:
       - 3333:3333
     volumes:
       - .:/usr/app
-    links:
-      - database_devaria
     depends_on:
-      - database_devaria
+      - db
+    links:
+      - db
+
 volumes:
   pgdata:
     driver: local

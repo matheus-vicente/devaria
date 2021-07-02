@@ -9,4 +9,8 @@ const app = express();
 app.use(express.json());
 app.use('/', routes);
 
-app.listen(process.env.DEFAULT_PORT, () => console.log('Servidor rodando!'));
+app.listen(
+  process.env.DEFAULT_PORT,
+  process.env.DEFAULT_HOST,
+  () => console.log('Servidor rodando!')
+);
