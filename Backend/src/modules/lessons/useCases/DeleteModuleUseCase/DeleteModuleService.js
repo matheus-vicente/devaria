@@ -5,14 +5,14 @@ class DeleteModuleService {
     this.#modulesRepository = modulesRepository;
   }
 
-  execute(id) {
-    const module = this.#modulesRepository.findById(id);
+  async execute(id) {
+    const module = await this.#modulesRepository.findById(id);
 
     if (!module) {
       throw new Error('Não é possível remover um módulo inexistente!');
     }
 
-    this.#modulesRepository.delete(id);
+    await this.#modulesRepository.delete(id);
   }
 }
 

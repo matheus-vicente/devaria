@@ -1,13 +1,10 @@
-const models = require('../../../database/models');
+const { v4: uuidV4 } = require('uuid');
+
+const { User } = require('../../../database/models');
 
 class UsersRepository {
-  #users;
 
   static #INSTANCE;
-
-  constructor() {
-    this.#users = [];
-  }
 
   static getInstance() {
     if (!UsersRepository.#INSTANCE) {
@@ -17,35 +14,43 @@ class UsersRepository {
     return UsersRepository.#INSTANCE;
   }
 
-  create(name, email, password) {
-    models.User.create({
+  async create(name, email, password) {
+    await User.create({
+      id: uuidV4(),
       name,
       email,
       password,
+      admin: false,
+      created_at: new Date(),
+      updated_at: new Date(),
     });
   }
 
-  findByEmail(email) {
-    const user = this.#users.find(user => user.email === email);
+  async findByEmail (email) {
+    const user = await User.findOne({ where: { email }});
 
     return user;
   }
 
-  findById(id) {
-    const user = this.#users.find(user => user.id === id);
+  async findById(id) {
+    const user = await User.findOne({ where: { id } });
 
     return user;
   }
 
-  turnAdmin(id) {
-    const user = this.#users.find(user => user.id === id);
+  async turnAdmin(id) {
+    const user = await User.findOne({ where: { id } });
 
     user.admin = !user.admin;
     user.updated_at = new Date();
+
+    await user.save();
   }
 
-  list() {
-    return this.#users;
+  async list() {
+    const users = await User.findAll();
+
+    return users;
   }
 }
 

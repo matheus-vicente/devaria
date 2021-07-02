@@ -5,12 +5,12 @@ class UpdateLessonController {
     this.#updateLessonService = updateLessonService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
       const { id } = req.params;
-      const { name, lesson_date } = req.body;
+      const { name, class_date } = req.body;
 
-      this.#updateLessonService.execute(id, name, lesson_date);
+      await this.#updateLessonService.execute(id, name, class_date);
 
       return res.status(200).send();
     } catch (error) {

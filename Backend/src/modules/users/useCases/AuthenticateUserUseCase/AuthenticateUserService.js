@@ -13,7 +13,7 @@ class AuthenticateUserService {
   }
 
   async execute(email, password) {
-    const user = this.#usersRepository.findByEmail(email);
+    const user = await this.#usersRepository.findByEmail(email);
 
     if (!user) {
       throw new Error('Combinação de e-mail/senha está incorreta!');

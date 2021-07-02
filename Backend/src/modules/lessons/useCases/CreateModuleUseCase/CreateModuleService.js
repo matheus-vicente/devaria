@@ -5,14 +5,14 @@ class CreateModuleService {
     this.#modulesRepository = modulesRepository;
   }
 
-  execute(name) {
-    const moduleAlreadyExists = this.#modulesRepository.findByName(name);
+  async execute(name) {
+    const moduleAlreadyExists = await this.#modulesRepository.findByName(name);
 
     if (moduleAlreadyExists) {
       throw new Error("Módulo informado já existe!");
     }
 
-    const module = this.#modulesRepository.create(name);
+    const module = await this.#modulesRepository.create(name);
 
     return module;
   }

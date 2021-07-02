@@ -5,8 +5,8 @@ class ListAllUsersService {
     this.#usersRepository = usersRepository;
   }
 
-  execute() {
-    const users = this.#usersRepository.list();
+  async execute() {
+    const users = await this.#usersRepository.list();
 
     return users;
   }

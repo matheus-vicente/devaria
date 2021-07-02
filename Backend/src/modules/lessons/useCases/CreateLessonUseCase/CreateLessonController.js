@@ -5,12 +5,16 @@ class CreateLessonController {
     this.#createLessonService = createLessonService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
-      const { name, lesson_date } = req.body;
-      const { module_id } = req;
+      const { name, class_date } = req.body;
+      const { module } = req;
 
-      const lesson = this.#createLessonService.execute(name, module_id, lesson_date);
+      const lesson = await this.#createLessonService.execute(
+        name,
+        module.id,
+        String(class_date),
+      );
 
       return res.status(201).json(lesson);
     } catch (error) {

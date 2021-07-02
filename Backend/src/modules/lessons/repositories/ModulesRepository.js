@@ -1,13 +1,9 @@
-const { Module } = require("../models/Modules");
+const { v4: uuidV4 } = require('uuid');
+
+const { Module } = require('../../../database/models');
 
 class ModulesRepository {
-  #modules;
-
   static #INSTANCE;
-
-  constructor() {
-    this.#modules = [];
-  }
 
   static getInstance() {
     if (!ModulesRepository.#INSTANCE) {
@@ -17,47 +13,46 @@ class ModulesRepository {
     return ModulesRepository.#INSTANCE;
   }
 
-  create(name) {
-    const module = new Module();
-
-    Object.assign(module, {
+  async create(name) {
+    Module.create({
+      id: uuidV4(),
       name,
-      created_at: new Date(),
-      updated_at: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
+  }
 
-    this.#modules.push(module);
+  async findById(id) {
+    const module = await Module.findOne({ where: { id } });
 
     return module;
   }
 
-  findById(module_id) {
-    const module = this.#modules.find((module) => module.id === module_id);
+  async findByName(name) {
+    const module = await Module.findOne({ where: { name } });
 
     return module;
   }
 
-  findByName(name) {
-    const module = this.#modules.find((module) => module.name === name);
+  async list() {
+    const modules = await Module.findAll();
 
-    return module;
+    return modules;
   }
 
-  list() {
-    return this.#modules;
+  async update(id, name) {
+    const module = await this.findById(id);
+
+    module.name = name;
+    module.updatedAt = new Date();
+
+    module.save();
   }
 
-  update(id, name) {
-    const module = this.#modules.find(module => module.id === id);
+  async delete(id) {
+    const modules = await this.findById(id);
 
-    module.name = String(name);
-    module.updated_at = new Date();
-  }
-
-  delete(id) {
-    const modules = this.#modules.filter(module => module.id !== id);
-
-    this.#modules = modules;
+    modules.destroy();
   }
 }
 

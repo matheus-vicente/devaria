@@ -5,11 +5,11 @@ class TurnUserAdminController {
     this.#turnUserAdminService = turnUserAdminService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
       const { id } = req.params;
 
-      this.#turnUserAdminService.execute(id);
+      await this.#turnUserAdminService.execute(id);
 
       return res.status(200).send();
     } catch (error) {

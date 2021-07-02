@@ -5,8 +5,8 @@ class ListAllModulesService {
     this.#modulesRepository = modulesRepository;
   }
 
-  execute() {
-    const modules = this.#modulesRepository.list();
+  async execute() {
+    const modules = await this.#modulesRepository.list();
 
     return modules;
   }

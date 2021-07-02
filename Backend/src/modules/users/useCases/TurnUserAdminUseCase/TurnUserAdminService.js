@@ -5,14 +5,14 @@ class TurnUserAdminService {
     this.#usersRepository = usersRepository;
   }
 
-  execute(user_id) {
-    const userExists = this.#usersRepository.findById(user_id);
+  async execute(user_id) {
+    const userExists = await this.#usersRepository.findById(user_id);
 
     if (!userExists) {
       throw new Error('Usuário não existe!');
     }
 
-    this.#usersRepository.turnAdmin(user_id);
+    await this.#usersRepository.turnAdmin(user_id);
   }
 }
 

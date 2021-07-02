@@ -5,14 +5,18 @@ class CreateLessonService {
     this.#lessonsRepository = lessonsRepository;
   }
 
-  execute(name, module_id, lesson_date) {
-    const nameAlreadyExists = this.#lessonsRepository.findByName(name);
+  async execute(name, module_id, class_date) {
+    const nameAlreadyExists = await this.#lessonsRepository.findByName(name);
 
     if (nameAlreadyExists) {
       throw new Error('Este nome já está em uso!');
     }
 
-    const lesson = this.#lessonsRepository.create(name, module_id, lesson_date);
+    const lesson = await this.#lessonsRepository.create(
+      name,
+      String(module_id),
+      class_date
+    );
 
     return lesson;
   }

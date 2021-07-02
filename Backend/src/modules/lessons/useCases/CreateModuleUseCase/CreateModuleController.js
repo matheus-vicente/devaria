@@ -5,11 +5,11 @@ class CreateModuleController {
     this.#createModuleService = createModuleService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
       const { name } = req.body;
 
-      const module = this.#createModuleService.execute(name);
+      const module = await this.#createModuleService.execute(name);
 
       return res.status(201).json(module);
     } catch (error) {

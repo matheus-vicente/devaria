@@ -5,8 +5,8 @@ class ListAllLessonsService {
     this.#lessonsRepository = lessonsRepository;
   }
 
-  execute() {
-    const lessons = this.#lessonsRepository.list();
+  async execute() {
+    const lessons = await this.#lessonsRepository.list();
 
     return lessons;
   }

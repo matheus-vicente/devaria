@@ -5,9 +5,9 @@ class ListAllModulesController {
     this.#listAllModulesService = listAllModulesService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
-      const modules = this.#listAllModulesService.execute();
+      const modules = await this.#listAllModulesService.execute();
 
       return res.status(200).json(modules);
     } catch (error) {

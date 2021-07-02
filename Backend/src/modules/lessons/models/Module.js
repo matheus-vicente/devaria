@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const User = sequelize.define('User', {
+  const Module = sequelize.define('Module', {
     id: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -8,18 +8,6 @@ module.exports = (sequelize, Sequelize) => {
     name: {
       allowNull: false,
       type: Sequelize.STRING,
-    },
-    email: {
-      allowNull: false,
-      type: Sequelize.STRING,
-    },
-    password: {
-      allowNull: false,
-      type: Sequelize.STRING,
-    },
-    admin: {
-      allowNull: false,
-      type: Sequelize.BOOLEAN,
     },
     createdAt: {
       allowNull: false,
@@ -31,5 +19,9 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  return User;
+  Module.associate = models => {
+    Module.hasOne(models.Lesson);
+  }
+
+  return Module;
 };

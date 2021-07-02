@@ -6,7 +6,7 @@ const { UsersRepository } = require('../modules/users/repositories/UsersReposito
 const usersRepository = UsersRepository.getInstance();
 
 module.exports = {
-  ensureAuthenticated(req, res, next) {
+  async ensureAuthenticated(req, res, next) {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
@@ -18,7 +18,7 @@ module.exports = {
     try {
       const { sub } = verify(token, secret);
 
-      const user = usersRepository.findById(sub);
+      const user = await usersRepository.findById(sub);
 
       if (!user) {
         throw new Error('Usuário não cadastrado!');

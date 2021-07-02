@@ -5,9 +5,9 @@ class ListAllLessonsController {
     this.#listAllLessonsService = listAllLessonsService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
-      const lessons = this.#listAllLessonsService.execute();
+      const lessons = await this.#listAllLessonsService.execute();
 
       return res.status(200).json(lessons);
     } catch (error) {

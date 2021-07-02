@@ -8,7 +8,7 @@ class CreateUserService {
   }
 
   async execute(name, email, password) {
-    const emailAlreadyExists = this.#usersRepository.findByEmail(email);
+    const emailAlreadyExists = await this.#usersRepository.findByEmail(email);
 
     if (emailAlreadyExists) {
       throw new Error('Já existe uma conta com este e-mail!');
@@ -20,7 +20,7 @@ class CreateUserService {
 
     const hashedPassword = await this.#hashProvider.generateHash(password);
 
-    this.#usersRepository.create(name, email, hashedPassword);
+    await this.#usersRepository.create(name, email, hashedPassword);
   }
 }
 

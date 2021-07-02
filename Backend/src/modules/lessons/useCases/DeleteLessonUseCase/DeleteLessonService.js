@@ -5,14 +5,14 @@ class DeleteLessonService {
     this.#lessonsRepository = lessonsRepository;
   }
 
-  execute(id) {
-    const module = this.#lessonsRepository.findById(id);
+  async execute(id) {
+    const module = await this.#lessonsRepository.findById(id);
 
     if (!module) {
       throw new Error('Não é possível remover uma aula inexistente!');
     }
 
-    this.#lessonsRepository.delete(id);
+    await this.#lessonsRepository.delete(id);
   }
 }
 

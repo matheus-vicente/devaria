@@ -8,7 +8,7 @@ const usersRouter = Router();
 
 usersRouter.get('/', (req, res) => listAllUsersController.handle(req, res));
 
-usersRouter.post('/', async (req, res) => await createUserController.handle(req, res));
+usersRouter.post('/', (req, res) => createUserController.handle(req, res));
 
 usersRouter.put('/admin/:id', (req, res) => turnUserAdminController.handle(req, res));
 

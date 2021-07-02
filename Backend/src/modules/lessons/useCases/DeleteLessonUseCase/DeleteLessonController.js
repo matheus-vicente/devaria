@@ -5,11 +5,11 @@ class DeleteLessonController {
     this.#deleteLessonService = deleteLessonService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
       const { id } = req.params;
 
-      this.#deleteLessonService.execute(id);
+      await this.#deleteLessonService.execute(id);
 
       return res.status(204).send();
     } catch (error) {

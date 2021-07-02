@@ -1,13 +1,9 @@
-const { Lesson } = require('../models/Lessons');
+const { v4: uuidV4 } = require('uuid');
+
+const { Lesson } = require('../../../database/models');
 
 class LessonsRepository {
-  #lessons;
-
   static #INSTANCE;
-
-  constructor() {
-    this.#lessons = [];
-  }
 
   static getInstance() {
     if (!LessonsRepository.#INSTANCE) {
@@ -17,50 +13,50 @@ class LessonsRepository {
     return LessonsRepository.#INSTANCE;
   }
 
-  create(name, module_id, lesson_date) {
-    const lesson = new Lesson();
-
-    Object.assign(lesson, {
+  async create(name, module_id, classDate) {
+    await Lesson.create({
+      id: uuidV4(),
       name,
-      module_id,
-      lesson_date: new Date(lesson_date),
-      created_at: new Date(),
-      updated_at: new Date(),
+      ModuleId: String(module_id),
+      classDate: new Date(classDate),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
-
-    this.#lessons.push(lesson);
-
-    return lesson;
   }
 
-  findByName(name) {
-    const lession = this.#lessons.find((lession) => lession.name === name);
+  async findByName(name) {
+    const lession = await Lesson.findOne({ where: { name } });
 
     return lession;
   }
 
-  findById(id) {
-    const lession = this.#lessons.find((lession) => lession.id === id);
+  async findById(id) {
+    const lession = await Lesson.findOne({ where: { id } });
+
 
     return lession;
   }
 
-  list() {
-    return this.#lessons;
+  async list() {
+    const lessons = await Lesson.findAll();
+
+    return lessons;
   }
 
-  update(id, name, lesson_date) {
-    const lesson = this.#lessons.find(lesson => lesson.id === id);
+  async update(id, name, classDate) {
+    const lesson = await this.findById(id);
 
     lesson.name = String(name);
-    lesson.lesson_date = new Date(String(lesson_date));
+    lesson.classDate = new Date(String(classDate));
     lesson.updated_at = new Date();
+
+    lesson.save();
   }
 
-  delete(id) {
-    const lessons = this.#lessons.filter(lesson => lesson.id !== id);
+  async delete(id) {
+    const lessons = await this.findById(id);
 
-    this.#lessons = lessons;
+    lessons.destroy();
   }
 }
 

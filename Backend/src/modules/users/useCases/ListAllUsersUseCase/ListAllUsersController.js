@@ -5,9 +5,9 @@ class ListAllUsersController {
     this.#listAllUsersService = listAllUsersService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
-      const users = this.#listAllUsersService.execute();
+      const users = await this.#listAllUsersService.execute();
 
       const usersWithoutPassword = users.map(user => {
         return {

@@ -5,11 +5,11 @@ class DeleteModuleController {
     this.#deleteModuleService = deleteModuleService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
       const { id } = req.params;
 
-      this.#deleteModuleService.execute(id);
+      await this.#deleteModuleService.execute(id);
 
       return res.status(204).send();
     } catch (error) {

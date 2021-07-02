@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const User = sequelize.define('User', {
+  const Lesson = sequelize.define('Lesson', {
     id: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -9,27 +9,25 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false,
       type: Sequelize.STRING,
     },
-    email: {
+    classDate: {
       allowNull: false,
-      type: Sequelize.STRING,
-    },
-    password: {
-      allowNull: false,
-      type: Sequelize.STRING,
-    },
-    admin: {
-      allowNull: false,
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.DATE,
     },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
     },
-    createdAt: {
+    updatedAt: {
       allowNull: false,
       type: Sequelize.DATE,
     },
   });
 
-  return User;
+  Lesson.associate = models => {
+    Lesson.belongsTo(models.Module, {
+      foreignKey: 'ModuleId'
+    });
+  };
+
+  return Lesson;
 };

@@ -5,12 +5,12 @@ class UpdateModuleController {
     this.#updateModuleService = updateModuleService;
   }
 
-  handle(req, res) {
+  async handle(req, res) {
     try {
       const { id } = req.params;
       const { name } = req.body;
 
-      this.#updateModuleService.execute(id, name);
+      await this.#updateModuleService.execute(id, name);
 
       return res.status(200).send();
     } catch (error) {

@@ -3,16 +3,16 @@ const { ModulesRepository } = require('../modules/lessons/repositories/ModulesRe
 const modulesRepository = ModulesRepository.getInstance();
 
 module.exports = {
-  checkModuleExists(req, res, next) {
+  async checkModuleExists(req, res, next) {
     const { module_id } = req.headers;
 
-    const module = modulesRepository.findById(module_id);
+    const module = await modulesRepository.findById(module_id);
 
     if (!module) {
       return res.status(400).json({ error: 'Módulo citado não extiste!' });
     }
 
-    req.module_id = module;
+    req.module = module;
 
     return next();
   }
