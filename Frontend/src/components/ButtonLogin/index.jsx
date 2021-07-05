@@ -1,12 +1,12 @@
 import { Container } from './styles';
 
-function ButtonLogin({ icon: Icon, ...rest }) {
+function ButtonLogin({ icon: Icon, children, isLogged = false, ...rest }) {
   return (
-    <Container {...rest}>
+    <Container isLogged={isLogged} {...rest}>
       {
         Icon && <Icon />
       }
-      Entrar
+      {children}
     </Container>
   );
 }

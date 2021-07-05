@@ -1,18 +1,18 @@
 import { Banner } from '../../components/Banner';
-import { FormLogin } from '../../components/FormLogin';
+import { FormSignUp } from '../../components/FormSignUp';
 
 import { Container, Content } from './styles';
 
-function Login() {
+function SignUp() {
   return (
     <Container>
       <Content>
-        <Banner subject="Login" />
+        <Banner subject="Cadastro" />
 
-        <FormLogin />
+        <FormSignUp />
       </Content>
     </Container>
-  )
+  );
 }
 
-export { Login };
+export { SignUp };

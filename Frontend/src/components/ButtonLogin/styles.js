@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.button`
   background: transparent;
@@ -21,5 +21,14 @@ export const Container = styled.button`
 
   svg {
     margin-right: 1rem;
+  }
+
+  ${
+    props => {
+      props.isLogged &&
+        css`
+          margin-right: 2rem;
+        `
+    }
   }
 `;

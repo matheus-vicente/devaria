@@ -28,4 +28,10 @@ export const MenuContainer = styled.div`
     text-decoration: underline;
     margin-right: 2rem;
   }
+
+  .button-logout {
+    margin-left: 2rem;
+    padding: 0.4rem 1rem;
+    width: auto;
+  }
 `;

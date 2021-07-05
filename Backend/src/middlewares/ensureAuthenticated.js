@@ -25,7 +25,7 @@ module.exports = {
       }
 
       req.user = {
-        id: sub,
+        id: user.id,
         admin: user.admin,
       }
 

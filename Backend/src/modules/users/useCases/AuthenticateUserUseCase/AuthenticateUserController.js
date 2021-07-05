@@ -14,11 +14,12 @@ class AuthenticateUserController {
       const userWithoutPassword = {
         name: user.name,
         email: user.email,
+        admin: user.admin,
         created_at: user.created_at,
       }
 
       return res.status(200).json({
-        userWithoutPassword,
+        user: userWithoutPassword,
         token,
       });
     } catch (error) {
