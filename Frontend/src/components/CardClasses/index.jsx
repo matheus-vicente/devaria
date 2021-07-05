@@ -1,5 +1,7 @@
 import { FiVideo, FiClock } from 'react-icons/fi';
 
+import { ButtonWatchClasses } from '../ButtonWatchClasses';
+
 import { Container, Header, ContainerInfo } from './styles';
 
 function CardClasses() {
@@ -27,7 +29,7 @@ function CardClasses() {
         </div>
       </ContainerInfo>
 
-      <button type="button">Assistir aula</button>
+      <ButtonWatchClasses />
     </Container>
   );
 }

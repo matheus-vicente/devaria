@@ -12,28 +12,13 @@ export const Container = styled.form`
     margin-top: 2rem;
   }
 
-  button {
-    background: var(--text-blue);
-    color: var(--text-white);
-
-    font-size: 1.125rem;
-    font-weight: 600;
-
-    margin-top: 4rem;
-    padding: 1.125rem 0;
-    border: 0;
-    border-radius: 10px;
+  .button-login {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
 
     position: relative;
-    transition: all 0.2s;
 
-    &:hover {
-      background: transparent;
-      color: var(--text-blue);
-      border: 1px solid var(--text-blue);
-    }
-
-    &.button-login::after {
+    &::after {
       content: '';
       position: absolute;
       bottom: -2em;

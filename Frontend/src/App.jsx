@@ -1,16 +1,16 @@
-// import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import { Home } from './pages/Home';
-// import { Login } from './pages/Login';
+import { Routes } from './routes';
 
 import { GlobalStyle } from './style/global';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyle />
-      <Home />
-    </>
+
+      <Routes />
+    </BrowserRouter>
   );
 }
 

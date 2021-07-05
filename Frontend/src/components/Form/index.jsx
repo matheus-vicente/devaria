@@ -1,5 +1,6 @@
 import { FiMail, FiLock } from 'react-icons/fi';
 
+import { Button } from '../Button';
 import { Input } from '../Input';
 
 import { Container } from './styles';
@@ -11,9 +12,9 @@ function Form() {
 
       <Input icon={FiLock} type="password" placeholder="Senha" />
 
-      <button type="button" className="button-login" >Entrar</button>
+      <Button type="button" className="button-login" >Entrar</Button>
 
-      <button type="button">Cadastre-se</button>
+      <Button type="button">Cadastre-se</Button>
     </Container>
   )
 }
