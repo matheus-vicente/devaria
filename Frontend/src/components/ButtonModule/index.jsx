@@ -11,6 +11,10 @@ function ButtonModule({ module }) {
   const { setSelectedModule } = useModule();
   const { lessons, setLessonsToBeShown } = useLesson();
 
+  const allLessonsForThisModule = lessons.filter(
+    lesson => lesson.ModuleId === module.id
+  );
+
   const handleSetButtonModule = useCallback(() => {
     const lessonsToBeShow = lessons.filter(
       lesson => lesson.ModuleId === module.id
@@ -26,7 +30,7 @@ function ButtonModule({ module }) {
 
       <ModuleDescription>
         <strong>{module.name}</strong>
-        <span>3/3 aulas</span>
+        <span>{allLessonsForThisModule.length} aulas</span>
       </ModuleDescription>
     </Container>
   );

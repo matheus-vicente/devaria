@@ -13,6 +13,12 @@ function Home() {
   const { modules, selectedModule } = useModule();
   const { lessonsToBeShown } = useLesson();
 
+  const modulesInAlphabeticalOrder = modules.sort(
+    (module, moduleToCompare) => (
+      module.name < moduleToCompare.name ? -1 : module.name > moduleToCompare.name ? 1 : 0
+    )
+  );
+
   return (
     <>
       <Header />
@@ -25,7 +31,7 @@ function Home() {
 
         <Section>
           {
-            modules.map(module => (
+            modulesInAlphabeticalOrder.map(module => (
               <ButtonModule
                 key={module.id}
                 module={module}
