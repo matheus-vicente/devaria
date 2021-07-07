@@ -31,6 +31,7 @@ function Home() {
 
         <Section>
           {
+            modulesInAlphabeticalOrder &&
             modulesInAlphabeticalOrder.map(module => (
               <ButtonModule
                 key={module.id}
@@ -40,14 +41,17 @@ function Home() {
           }
         </Section>
 
-        <ClassTitle>
-          <img src={moduleIconImg} alt="module icon" />
+        {
+          selectedModule &&
+          <ClassTitle>
+            <img src={moduleIconImg} alt="module icon" />
 
-          <div>
-            <strong>{selectedModule.name}</strong>
-            <p>Todas as aulas disponíveis nesse módulo:</p>
-          </div>
-        </ClassTitle>
+            <div>
+              <strong>{selectedModule.name}</strong>
+              <p>Todas as aulas disponíveis nesse módulo:</p>
+            </div>
+          </ClassTitle>
+        }
 
         <CardWrapper>
           {
