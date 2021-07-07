@@ -15,6 +15,7 @@ export const Content = styled.div`
 
   img {
     height: 2.4rem;
+    cursor: pointer;
   }
 `;
 

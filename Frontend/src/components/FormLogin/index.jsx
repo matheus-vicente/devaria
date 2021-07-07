@@ -27,7 +27,7 @@ function FormLogin() {
 
       history.push('/area-do-usuario');
     } catch (error) {
-      console.log(error);
+      alert('Erron na aplicação. Verifique e-mail e senha e tente novamente!', error.message);
     }
   }, [history]);
 

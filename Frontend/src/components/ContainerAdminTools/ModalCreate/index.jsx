@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import Modal from 'react-modal';
 import { Form } from 'unform';
 import { BiXCircle } from 'react-icons/bi';
@@ -21,6 +22,8 @@ function ModalCreate({
   const { modules, createModule, updateModule, selectedModuleById } = useModule();
   const { createLesson, updateLesson, selectedLessonById } = useLesson();
 
+  const history = useHistory();
+
   const handleCreateModule = useCallback(async (data) => {
     try {
       if (isUpdate) {
@@ -28,11 +31,13 @@ function ModalCreate({
       } else {
         await createModule(data.name);
       }
+
       setIsOpen(false);
+      history.go(0);
     } catch (error) {
-      console.log(error);
+      alert('Erro na aplicação. Este nome de móulo já existe', error.message);
     }
-  }, [selectedModuleById, updateModule, createModule, isUpdate]);
+  }, [selectedModuleById, updateModule, createModule, isUpdate, history]);
 
   const handleCreateLesson = useCallback(async (data) => {
     try {
@@ -42,11 +47,13 @@ function ModalCreate({
         const module = modules.find(module => module.name === data.module);
         await createLesson(data.name, module.id, data.classDate);
       }
+
       setIsOpen(false);
+      history.go(0);
     } catch (error) {
-      console.log(error);
+      alert('Erro na aplicação. Verifique se o módulo informado existe.', error.message);
     }
-  }, [selectedLessonById, modules]);
+  }, [selectedLessonById, modules, history]);
 
   const handleCloseModal = useCallback(() => {
     onRequestClose();

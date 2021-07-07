@@ -25,12 +25,18 @@ function ModalList({
   }
 
   const handleDelete = useCallback(async (data) => {
-    if (subject === 'Aulas') {
-      await deleteLesson(data);
-    } else {
-      await deleteModule(data);
+    try {
+      if (subject === 'Aulas') {
+        await deleteLesson(data);
+      } else {
+        await deleteModule(data);
+      }
+
+      history.go(0);
+    } catch (error) {
+      alert('Erro interno.', error.message);
     }
-  }, []);
+  }, [history]);
 
   const handleUpdate = useCallback(async (data) => {
     setIsUpdate(true);

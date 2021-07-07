@@ -19,7 +19,7 @@ function FormSignUp() {
 
       history.push('/entrar');
     } catch (error) {
-      console.log(error);
+      alert('Erro na aplicação. E-mail já em uso!');
     }
 
   }, [useHistory]);
