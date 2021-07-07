@@ -51,6 +51,16 @@ function AuthProvider({ children }) {
 
   const turnAdmin = useCallback(async () => {
     await api.put(`/users/admin/${data.user.id}`);
+
+    const userWithAdmin = {
+      token: data.token,
+      user: {
+        ...data.user,
+        admin: true,
+      }
+    }
+
+    setData(userWithAdmin);
   }, [data]);
 
   return (
