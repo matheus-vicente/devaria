@@ -14,12 +14,14 @@ class ModulesRepository {
   }
 
   async create(name) {
-    Module.create({
+    const module = await Module.create({
       id: uuidV4(),
       name,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
+
+    return module;
   }
 
   async findById(id) {
@@ -47,6 +49,8 @@ class ModulesRepository {
     module.updatedAt = new Date();
 
     module.save();
+
+    return module;
   }
 
   async delete(id) {

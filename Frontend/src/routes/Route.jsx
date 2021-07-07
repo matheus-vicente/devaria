@@ -12,11 +12,6 @@ function Route({
 }) {
   const { user } = useAuth();
 
-// false/false ok
-// false/true ok
-// true/false not ok
-// true/true ok
-
   return (
     <ReactDOMRoute
       {...rest}
@@ -24,7 +19,7 @@ function Route({
         if (isPrivate && !user) {
           return <Redirect
             to={{
-              pathname: '/entrar',
+              pathname: '/',
               state: { location },
             }}
           />

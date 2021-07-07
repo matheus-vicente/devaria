@@ -2,7 +2,6 @@ import React, { useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiMail, FiLock, FiUser } from 'react-icons/fi';
 import { Form } from 'unform';
-import * as Yup from 'yup';
 
 import { api } from '../../service/api';
 

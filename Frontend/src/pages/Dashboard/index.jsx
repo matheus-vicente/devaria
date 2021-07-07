@@ -1,6 +1,6 @@
 import { Header } from '../../components/Header';
 import { CardUser } from '../../components/CardUser';
-import { CardAdminTools } from '../../components/CardAdminTools';
+import { ContainerAdminTools } from '../../components/ContainerAdminTools';
 
 import { Container, Content } from './styles';
 
@@ -16,9 +16,9 @@ function Dashboard() {
           <CardUser />
 
           <div className="container-admin-tools">
-            <CardAdminTools about="Módulo" />
+            <ContainerAdminTools subject="Módulos" />
 
-            <CardAdminTools about="Aula" />
+            <ContainerAdminTools subject="Aulas" />
           </div>
         </Content>
       </Container>

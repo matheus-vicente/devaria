@@ -30,7 +30,9 @@ class UpdateLessonService {
       throw new Error('Data da aula nao informada!');
     }
 
-    await this.#lessonsRepository.update(id, name, class_date );
+    const updatedLesson = await this.#lessonsRepository.update(id, name, class_date );
+
+    return updatedLesson;
   }
 }
 

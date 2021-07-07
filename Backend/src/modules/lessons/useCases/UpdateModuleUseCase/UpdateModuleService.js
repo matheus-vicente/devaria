@@ -18,7 +18,9 @@ class UpdateModuleService {
       throw new Error('Já existe um módulo com este nome!');
     }
 
-    this.#modulesRepository.update(id, name);
+    const updatedModule = this.#modulesRepository.update(id, name);
+
+    return updatedModule;
   }
 }
 

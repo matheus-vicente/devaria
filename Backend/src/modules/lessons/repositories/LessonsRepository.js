@@ -14,7 +14,7 @@ class LessonsRepository {
   }
 
   async create(name, module_id, classDate) {
-    await Lesson.create({
+    const lesson = await Lesson.create({
       id: uuidV4(),
       name,
       ModuleId: String(module_id),
@@ -22,6 +22,8 @@ class LessonsRepository {
       createdAt: new Date(),
       updatedAt: new Date(),
     });
+
+    return lesson;
   }
 
   async findByName(name) {
@@ -51,6 +53,8 @@ class LessonsRepository {
     lesson.updated_at = new Date();
 
     lesson.save();
+
+    return lesson;
   }
 
   async delete(id) {

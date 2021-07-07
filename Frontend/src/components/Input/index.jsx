@@ -21,7 +21,9 @@ function Input({ name, icon: Icon, ...rest }) {
 
   return (
     <Container>
-      <Icon size={22} color='#25cbd3' />
+      {
+        Icon && <Icon size={22} color='#25cbd3' />
+      }
       <input ref={inputRef} defaultValue={defaultValue} {...rest} />
     </Container>
   );

@@ -1,4 +1,6 @@
 import { useContext, createContext, useState, useCallback, useEffect } from "react";
+import { decode } from 'jsonwebtoken';
+
 import { api } from "../service/api";
 
 const AuthContext = createContext();
@@ -11,14 +13,22 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = localStorage.getItem('@Devaria:token');
-    const user = localStorage.getItem('@Devaria:user');
+    const userStoraged = localStorage.getItem('@Devaria:user');
 
-    if (token && user) {
-      setData({ token, user: JSON.parse(user)});
+
+    if (token && userStoraged) {
+      const { sub } = decode(token);
+      const parsedUser = JSON.parse(userStoraged);
+
+      const user = {
+        ...parsedUser,
+        id: sub,
+      }
+      setData({ token, user });
     }
   }, []);
 
-  async function login(email, password) {
+  const login = useCallback(async (email, password) => {
     const response = await api.post('/sessions/login', {
       email,
       password,
@@ -30,7 +40,7 @@ function AuthProvider({ children }) {
     localStorage.setItem('@Devaria:user', JSON.stringify(user));
 
     setData({ token, user });
-  }
+  }, []);
 
   const logout = useCallback(() => {
     localStorage.removeItem('@Devaria:token');
@@ -39,8 +49,12 @@ function AuthProvider({ children }) {
     setData({});
   }, []);
 
+  const turnAdmin = useCallback(async () => {
+    await api.put(`/users/admin/${data.user.id}`);
+  }, [data]);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, login, logout }}>
+    <AuthContext.Provider value={{ user: data.user, login, logout, turnAdmin, token: data.token }}>
       {children}
     </AuthContext.Provider>
   );

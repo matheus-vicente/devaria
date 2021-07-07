@@ -1,5 +1,8 @@
 import moduleIconImg from '../../assets/module-icon.svg';
 
+import { useModule } from '../../hooks/module';
+import { useLesson } from '../../hooks/lesson';
+
 import { Header } from '../../components/Header';
 import { ButtonModule } from '../../components/ButtonModule';
 import { CardClasses } from '../../components/CardClasses';
@@ -7,6 +10,9 @@ import { CardClasses } from '../../components/CardClasses';
 import { Content, Title, Section, ClassTitle, CardWrapper } from './styles';
 
 function Home() {
+  const { modules, selectedModule } = useModule();
+  const { lessonsToBeShown } = useLesson();
+
   return (
     <>
       <Header />
@@ -18,34 +24,37 @@ function Home() {
         </Title>
 
         <Section>
-          <ButtonModule />
-
-          <ButtonModule />
-
-          <ButtonModule />
-
-          <ButtonModule />
-
-          <ButtonModule />
-
-          <ButtonModule />
+          {
+            modules.map(module => (
+              <ButtonModule
+                key={module.id}
+                module={module}
+              />
+            ))
+          }
         </Section>
 
         <ClassTitle>
           <img src={moduleIconImg} alt="module icon" />
 
           <div>
-            <strong>Introdução e Preparatório</strong>
+            <strong>{selectedModule.name}</strong>
             <p>Todas as aulas disponíveis nesse módulo:</p>
           </div>
         </ClassTitle>
 
         <CardWrapper>
-          <CardClasses />
-
-          <CardClasses />
-
-          <CardClasses />
+          {
+            lessonsToBeShown &&
+            lessonsToBeShown.map(
+              lesson => (
+                <CardClasses
+                  key={lesson.id}
+                  lesson={lesson}
+                />
+              )
+            )
+          }
         </CardWrapper>
       </Content>
     </>

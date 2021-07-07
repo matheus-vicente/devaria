@@ -1,21 +1,29 @@
+import { format } from 'date-fns';
 import { FiVideo, FiClock } from 'react-icons/fi';
+
+import { useModule } from '../../hooks/module';
 
 import { ButtonWatchClasses } from '../ButtonWatchClasses';
 
 import { Container, Header, ContainerInfo } from './styles';
 
-function CardClasses() {
+function CardClasses({ lesson }) {
+  const { selectedModule } = useModule();
+
+  const date = new Date(lesson.classDate);
+  const formatedDate = format(date, "'Dia:' dd/MM/YYY", { timeZone: 'America/Sao_Paulo' })
+
   return (
     <Container>
       <Header>
-        <div>Introdução e Preparatório</div>
+        <div>{selectedModule.name}</div>
 
         <span>3/3</span>
       </Header>
 
-      <strong>Iniciando como um programador(a) Devaria</strong>
+      <strong>{lesson.name}</strong>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus cursus libero, eget accumsan mauris. Ut scelerisque, turpis in tristique rhoncus, elit magna faucibus magna, ac pretium elit mi et leo. Nulla sit amet nibh diam.</p>
+      <span className="class-date">{formatedDate}</span>
 
       <ContainerInfo>
         <div>

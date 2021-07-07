@@ -10,9 +10,9 @@ class UpdateModuleController {
       const { id } = req.params;
       const { name } = req.body;
 
-      await this.#updateModuleService.execute(id, name);
+      const module = await this.#updateModuleService.execute(id, name);
 
-      return res.status(200).send();
+      return res.status(200).json(module);
     } catch (error) {
       return res.status(400).json({ error: String(error) });
     }

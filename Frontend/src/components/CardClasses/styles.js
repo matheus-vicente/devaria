@@ -27,6 +27,13 @@ export const Container = styled.div`
     line-height: 1.8rem;
   }
 
+  .class-date{
+    margin: 2rem 0;
+    color: var(--text-white);
+    font-weight: 600;
+    font-size: 1.125rem;
+  }
+
   p {
     max-height: 9.5rem;
     overflow: hidden;

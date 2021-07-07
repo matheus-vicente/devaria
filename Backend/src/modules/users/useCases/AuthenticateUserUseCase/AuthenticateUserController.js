@@ -12,6 +12,7 @@ class AuthenticateUserController {
       const { user, token } = await this.#authenticateUserService.execute(email, password);
 
       const userWithoutPassword = {
+        id: user.id,
         name: user.name,
         email: user.email,
         admin: user.admin,
