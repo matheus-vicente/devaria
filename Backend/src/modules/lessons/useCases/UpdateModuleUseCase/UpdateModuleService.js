@@ -1,5 +1,5 @@
 class UpdateModuleService {
-  #modulesRepository;
+  modulesRepository;
 
   constructor(modulesRepository) {
     this.modulesRepository = modulesRepository;
