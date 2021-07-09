@@ -3,14 +3,14 @@ const { v4: uuidV4 } = require('uuid');
 const { Lesson } = require('../../../database/models');
 
 class LessonsRepository {
-  static #INSTANCE;
+  static INSTANCE;
 
   static getInstance() {
-    if (!LessonsRepository.#INSTANCE) {
-      LessonsRepository.#INSTANCE = new LessonsRepository();
+    if (!LessonsRepository.INSTANCE) {
+      LessonsRepository.INSTANCE = new LessonsRepository();
     }
 
-    return LessonsRepository.#INSTANCE;
+    return LessonsRepository.INSTANCE;
   }
 
   async create(name, module_id, classDate) {

@@ -1,15 +1,15 @@
 class DeleteLessonController {
-  #deleteLessonService;
+  deleteLessonService;
 
   constructor(deleteLessonService) {
-    this.#deleteLessonService = deleteLessonService;
+    this.deleteLessonService = deleteLessonService;
   }
 
   async handle(req, res) {
     try {
       const { id } = req.params;
 
-      await this.#deleteLessonService.execute(id);
+      await this.deleteLessonService.execute(id);
 
       return res.status(204).send();
     } catch (error) {

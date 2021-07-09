@@ -1,12 +1,12 @@
 class ListAllModulesService {
-  #modulesRepository;
+  modulesRepository;
 
   constructor(modulesRepository) {
-    this.#modulesRepository = modulesRepository;
+    this.modulesRepository = modulesRepository;
   }
 
   async execute() {
-    const modules = await this.#modulesRepository.list();
+    const modules = await this.modulesRepository.list();
 
     return modules;
   }

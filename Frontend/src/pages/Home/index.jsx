@@ -19,6 +19,12 @@ function Home() {
     )
   );
 
+  const lessonInAlphabeticalOder = lessonsToBeShown.sort(
+    (lesson, lessonToCompare) => (
+      lesson.name < lessonToCompare.name ? -1 : lesson.name > lessonToCompare.name ? 1 : 0
+    )
+  );
+
   return (
     <>
       <Header />
@@ -55,8 +61,8 @@ function Home() {
 
         <CardWrapper>
           {
-            lessonsToBeShown &&
-            lessonsToBeShown.map(
+            lessonInAlphabeticalOder &&
+            lessonInAlphabeticalOder.map(
               lesson => (
                 <CardClasses
                   key={lesson.id}

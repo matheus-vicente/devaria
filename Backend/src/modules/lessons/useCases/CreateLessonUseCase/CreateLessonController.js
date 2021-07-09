@@ -1,8 +1,8 @@
 class CreateLessonController {
-  #createLessonService;
+  createLessonService;
 
   constructor(createLessonService) {
-    this.#createLessonService = createLessonService;
+    this.createLessonService = createLessonService;
   }
 
   async handle(req, res) {
@@ -10,7 +10,7 @@ class CreateLessonController {
       const { name, class_date } = req.body;
       const { module } = req;
 
-      const lesson = await this.#createLessonService.execute(
+      const lesson = await this.createLessonService.execute(
         name,
         module.id,
         String(class_date),

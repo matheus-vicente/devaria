@@ -1,12 +1,12 @@
 class ListAllLessonsService {
-  #lessonsRepository;
+  lessonsRepository;
 
   constructor(lessonsRepository) {
-    this.#lessonsRepository = lessonsRepository;
+    this.lessonsRepository = lessonsRepository;
   }
 
   async execute() {
-    const lessons = await this.#lessonsRepository.list();
+    const lessons = await this.lessonsRepository.list();
 
     return lessons;
   }

@@ -1,8 +1,8 @@
 class UpdateModuleController {
-  #updateModuleService;
+  updateModuleService;
 
   constructor(updateModuleService) {
-    this.#updateModuleService = updateModuleService;
+    this.updateModuleService = updateModuleService;
   }
 
   async handle(req, res) {
@@ -10,7 +10,7 @@ class UpdateModuleController {
       const { id } = req.params;
       const { name } = req.body;
 
-      const module = await this.#updateModuleService.execute(id, name);
+      const module = await this.updateModuleService.execute(id, name);
 
       return res.status(200).json(module);
     } catch (error) {

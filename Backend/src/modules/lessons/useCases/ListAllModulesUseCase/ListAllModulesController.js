@@ -1,13 +1,13 @@
 class ListAllModulesController {
-  #listAllModulesService;
+  listAllModulesService;
 
   constructor(listAllModulesService) {
-    this.#listAllModulesService = listAllModulesService;
+    this.listAllModulesService = listAllModulesService;
   }
 
   async handle(req, res) {
     try {
-      const modules = await this.#listAllModulesService.execute();
+      const modules = await this.listAllModulesService.execute();
 
       return res.status(200).json(modules);
     } catch (error) {

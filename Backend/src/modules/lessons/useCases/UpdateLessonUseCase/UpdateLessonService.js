@@ -1,20 +1,20 @@
 const { isBefore } = require('date-fns');
 
 class UpdateLessonService {
-  #lessonsRepository;
+  lessonsRepository;
 
   constructor(lessonsRepository) {
-    this.#lessonsRepository = lessonsRepository;
+    this.lessonsRepository = lessonsRepository;
   }
 
   async execute(id, name, class_date) {
-    const lessonAlready = await this.#lessonsRepository.findById(id);
+    const lessonAlready = await this.lessonsRepository.findById(id);
 
     if (!lessonAlready) {
       throw new Error('Aula citado não extiste!');
     }
 
-    const lesson = await this.#lessonsRepository.findByName(name);
+    const lesson = await this.lessonsRepository.findByName(name);
 
     if (lesson) {
       throw new Error('Já existe uma aula com este nome!');
@@ -30,7 +30,7 @@ class UpdateLessonService {
       throw new Error('Data da aula nao informada!');
     }
 
-    const updatedLesson = await this.#lessonsRepository.update(id, name, class_date );
+    const updatedLesson = await this.lessonsRepository.update(id, name, class_date );
 
     return updatedLesson;
   }

@@ -1,15 +1,15 @@
 class DeleteModuleController {
-  #deleteModuleService;
+  deleteModuleService;
 
   constructor(deleteModuleService) {
-    this.#deleteModuleService = deleteModuleService;
+    this.deleteModuleService = deleteModuleService;
   }
 
   async handle(req, res) {
     try {
       const { id } = req.params;
 
-      await this.#deleteModuleService.execute(id);
+      await this.deleteModuleService.execute(id);
 
       return res.status(204).send();
     } catch (error) {

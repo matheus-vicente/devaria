@@ -1,8 +1,8 @@
 class UpdateLessonController {
-  #updateLessonService;
+  updateLessonService;
 
   constructor(updateLessonService) {
-    this.#updateLessonService = updateLessonService;
+    this.updateLessonService = updateLessonService;
   }
 
   async handle(req, res) {
@@ -10,7 +10,7 @@ class UpdateLessonController {
       const { id } = req.params;
       const { name, class_date } = req.body;
 
-      const lesson = await this.#updateLessonService.execute(id, name, class_date);
+      const lesson = await this.updateLessonService.execute(id, name, class_date);
 
       return res.status(200).json(lesson);
     } catch (error) {

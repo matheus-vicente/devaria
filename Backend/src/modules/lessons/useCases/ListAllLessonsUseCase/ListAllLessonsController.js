@@ -1,13 +1,13 @@
 class ListAllLessonsController {
-  #listAllLessonsService;
+  listAllLessonsService;
 
   constructor(listAllLessonsService) {
-    this.#listAllLessonsService = listAllLessonsService;
+    this.listAllLessonsService = listAllLessonsService;
   }
 
   async handle(req, res) {
     try {
-      const lessons = await this.#listAllLessonsService.execute();
+      const lessons = await this.listAllLessonsService.execute();
 
       return res.status(200).json(lessons);
     } catch (error) {
