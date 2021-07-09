@@ -3,23 +3,23 @@ const { sign } = require('jsonwebtoken');
 const { secret, expiresIn } = require('../../../../config/auth');
 
 class AuthenticateUserService {
-  #usersRepository;
+  usersRepository;
 
-  #hashProvider;
+  hashProvider;
 
   constructor(usersRepository, hashProvider) {
-    this.#usersRepository = usersRepository;
-    this.#hashProvider = hashProvider;
+    this.usersRepository = usersRepository;
+    this.hashProvider = hashProvider;
   }
 
   async execute(email, password) {
-    const user = await this.#usersRepository.findByEmail(email);
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new Error('Combinação de e-mail/senha está incorreta!');
     }
 
-    const passwordMatched = await this.#hashProvider.compareHash(
+    const passwordMatched = await this.hashProvider.compareHash(
       password,
       user.password,
     );

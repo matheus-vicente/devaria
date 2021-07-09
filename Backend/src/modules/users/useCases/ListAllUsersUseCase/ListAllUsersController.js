@@ -1,13 +1,13 @@
 class ListAllUsersController {
-  #listAllUsersService;
+  listAllUsersService;
 
   constructor(listAllUsersService) {
-    this.#listAllUsersService = listAllUsersService;
+    this.listAllUsersService = listAllUsersService;
   }
 
   async handle(req, res) {
     try {
-      const users = await this.#listAllUsersService.execute();
+      const users = await this.listAllUsersService.execute();
 
       const usersWithoutPassword = users.map(user => {
         return {

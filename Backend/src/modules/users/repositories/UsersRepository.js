@@ -4,14 +4,14 @@ const { User } = require('../../../database/models');
 
 class UsersRepository {
 
-  static #INSTANCE;
+  static INSTANCE;
 
   static getInstance() {
-    if (!UsersRepository.#INSTANCE) {
-      UsersRepository.#INSTANCE = new UsersRepository();
+    if (!UsersRepository.INSTANCE) {
+      UsersRepository.INSTANCE = new UsersRepository();
     }
 
-    return UsersRepository.#INSTANCE;
+    return UsersRepository.INSTANCE;
   }
 
   async create(name, email, password) {

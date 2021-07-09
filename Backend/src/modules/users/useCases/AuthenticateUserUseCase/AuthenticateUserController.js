@@ -1,15 +1,15 @@
 class AuthenticateUserController {
-  #authenticateUserService;
+  authenticateUserService;
 
   constructor(authenticateUserService) {
-    this.#authenticateUserService = authenticateUserService;
+    this.authenticateUserService = authenticateUserService;
   }
 
   async handle(req, res) {
     try {
       const { email, password } = req.body;
 
-      const { user, token } = await this.#authenticateUserService.execute(email, password);
+      const { user, token } = await this.authenticateUserService.execute(email, password);
 
       const userWithoutPassword = {
         id: user.id,
